@@ -1,0 +1,10 @@
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.nav a {
+    margin: 8px 12px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
