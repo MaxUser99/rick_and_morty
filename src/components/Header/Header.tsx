@@ -18,7 +18,18 @@ const routes: IRoute[] = [
 
 const Header = ({ location }: IHeaderProps) => (
     <nav className={styles.nav}>
-        { routes.map(({ pathname, title }) => <NavLink to={pathname}>{title}</NavLink>) }
+        {
+            routes.map(({ pathname, title }) => (
+                <NavLink
+                    // isActive={}
+                    exact
+                    activeClassName={styles.active}
+                    className={styles.link}
+                    to={pathname}>
+                    {title}
+                </NavLink>
+            ))
+        }
     </nav>
 );
 
