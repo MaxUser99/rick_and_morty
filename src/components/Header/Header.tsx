@@ -1,17 +1,25 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, RouteComponentProps, withRouter } from 'react-router-dom';
 import styles from './Header.module.css';
 
-interface IHeaderProps {}
+interface IHeaderProps extends RouteComponentProps<any> {}
 
-const Header = (props: IHeaderProps) => {
-    return (
-        <nav className={styles.nav}>
-            <NavLink to='/characters'>characters</NavLink>
-            <NavLink to='/episodes'>episodes</NavLink>
-            <NavLink to='/locations'>locations</NavLink>
-        </nav>
-    );
+interface IRoute {
+    pathname: string;
+    title: string;
 }
 
-export default Header;
+const routes: IRoute[] = [
+    { pathname: '/', title: 'home' },
+    { pathname: '/characters', title: 'characters' },
+    { pathname: '/episodes', title: 'episodes' },
+    { pathname: '/locations', title: 'locations' },
+];
+
+const Header = ({ location }: IHeaderProps) => (
+    <nav className={styles.nav}>
+        { routes.map(({ pathname, title }) => <NavLink to={pathname}>{title}</NavLink>) }
+    </nav>
+);
+
+export default withRouter(Header);

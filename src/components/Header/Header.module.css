@@ -2,9 +2,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 16px 0;
 }
 .nav a {
     margin: 8px 12px;
+    color:#91C954;
     text-transform: uppercase;
     text-decoration: none;
 }

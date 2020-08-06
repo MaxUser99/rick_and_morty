@@ -1,0 +1,6 @@
+.logo {
+    width: 100%;
+    top: 50%;
+    position: absolute;
+    transform: translateY(-55%);
+}
