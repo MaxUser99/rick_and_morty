@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { loadCharacters } from 'store/charactersReducer/actions';
+import { connect } from 'react-redux';
 
-interface ICharactersProps {}
+interface ICharactersProps {
+    loadCharacters?: () => void;
+}
 
 const Characters = (props: ICharactersProps) => {
+    useEffect(() => {
+        props.loadCharacters?.();
+    }, [])
     return <div>Characters</div>
 }
 
-export default Characters;
+const mapDispatchToProps = (dispatch: any) => ({
+    loadCharacters: () => dispatch(loadCharacters())
+});
+
+export default connect(null, mapDispatchToProps)(Characters);

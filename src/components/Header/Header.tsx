@@ -21,7 +21,7 @@ const Header = ({ location }: IHeaderProps) => (
         {
             routes.map(({ pathname, title }) => (
                 <NavLink
-                    // isActive={}
+                    key={pathname}
                     exact
                     activeClassName={styles.active}
                     className={styles.link}

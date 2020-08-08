@@ -1,14 +1,16 @@
-interface ICharState {};
+// import { ICharacter } from "interfaces/ICharacter";
+// import { SyncAction, ActionType } from "./actions";
 
-const initialState: ICharState = {};
+import initialState, { IState } from "./state";
+import { CharacterActions } from "./actions";
 
-type UserAction = {
-    type: string;
-    payload?: any;
-};
-
-const reducer = (state = initialState, action: UserAction): ICharState => {
-    return state;
-};
+const reducer = (state: IState = initialState, action: CharacterActions): IState => {
+    switch (action.type) {
+        case 'LOAD_CHARACTER': return state;
+        case 'SET_CHARACTERS': return state;
+        case 'UPDATE_CHARACTERS': return state;
+        default: return state;
+    }
+}
 
 export default reducer;
