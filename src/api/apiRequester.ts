@@ -19,7 +19,7 @@ class ApiRequester {
     private readonly episodesUrl = 'https://rickandmortyapi.com/api/episode';
 
     getCharacters = async (params: ICharacterParams = {}) => {
-        return axios.get('https://rickandmortyapi.com/api/character' + querystring.stringify(params))
+        return axios.get(this.charactersUrl + querystring.stringify(params))
             .then(({ data: { results, info: { next } } }) => {
                 const nextPage: number = next ?? querystring.parseUrl(next)?.query?.page;
 
