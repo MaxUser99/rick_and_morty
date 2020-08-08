@@ -2,6 +2,7 @@ import axios from 'axios';
 import querystring from 'query-string';
 import { Status } from 'interfaces/Status';
 import { Gender } from 'interfaces/Gender';
+import { ICharacter } from 'interfaces/ICharacter';
 
 interface ICharacterParams {
     page?: number;
@@ -19,7 +20,16 @@ class ApiRequester {
 
     getCharacters = async (params: ICharacterParams = {}) => {
         return axios.get('https://rickandmortyapi.com/api/character' + querystring.stringify(params))
-            .then(({ data }) => data)
+            .then(({ data: { results, info: { next } } }) => {
+                const nextPage: number = next ?? querystring.parseUrl(next)?.query?.page;
+
+                console.log('next page: ', nextPage);
+
+                return {
+                    characters: (results as ICharacter[]),
+                    next: nextPage || null
+                };
+            })
             .catch(() => null);
     }
 }
